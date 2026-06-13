@@ -236,8 +236,4 @@ df -h /mnt/frigate           # Speicherplatz HDD
 htop                         # System gesamt
 ```
 
----
 
-## Lizenz
-
-MIT
