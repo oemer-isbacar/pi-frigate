@@ -1,0 +1,24 @@
+# Niemals ins Repository!
+# Eigene Config mit echten Daten lokal behalten
+config/config.yml
+
+# Nur die Template-Version wird versioniert:
+# config/config.yml.example  ← diese committen
+
+# Lokale Overrides
+*.local
+.env
+.env.*
+
+# Docker
+.docker/
+
+# Logs
+*.log
+
+# System
+.DS_Store
+Thumbs.db
+
+# Private Notizen
+NOTES.md

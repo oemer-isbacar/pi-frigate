@@ -1,0 +1,77 @@
+mqtt:
+  enabled: true
+  host: 192.168.X.X   # IP des Servers auf dem Mosquitto läuft
+
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
+ffmpeg:
+  hwaccel_args: ''
+  # Hinweis: preset-rpi-64-bit funktioniert nicht mit Frigate 0.17
+  global_args: [-hide_banner, -loglevel, warning]
+  input_args: preset-rtsp-generic
+  output_args:
+    record: preset-record-generic-audio-aac
+
+cameras:
+  Kamera_1:
+    ffmpeg:
+      inputs:
+        - path: rtsp://USER:PASSWORT@192.168.X.X:554/h264Preview_01_sub
+          roles: [detect]
+        - path: rtsp://USER:PASSWORT@192.168.X.X:554/h264Preview_01_main
+          roles: [record]
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 5
+    record:
+      enabled: true
+      continuous:
+        days: 0
+      motion:
+        days: 2
+
+  Kamera_2:
+    ffmpeg:
+      inputs:
+        - path: rtsp://USER:PASSWORT@192.168.X.X:554/h264Preview_01_sub
+          roles: [detect]
+        - path: rtsp://USER:PASSWORT@192.168.X.X:554/h264Preview_01_main
+          roles: [record]
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 5
+    record:
+      enabled: true
+      continuous:
+        days: 0
+      motion:
+        days: 2
+
+  # Weitere Kameras analog hinzufügen...
+
+objects:
+  track: [person, car, bicycle, motorcycle, dog, cat]
+
+semantic_search:
+  enabled: true
+  model_size: small
+
+face_recognition:
+  enabled: true
+  model_size: small
+
+lpr:
+  enabled: false
+
+classification:
+  bird:
+    enabled: false
+
+version: 0.17-0
